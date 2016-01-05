@@ -1,4 +1,4 @@
-package fr.ichida.example.features;
+package fr.ichida.example.feature;
 
 import fr.ichida.example.entity.Conference;
 import fr.ichida.example.service.ConferenceService;
@@ -29,5 +29,13 @@ public class ConferenceRestService {
     @RequestMapping(path = {"", "/"})
     public List<Conference> findAll() {
         return conferenceService.findAll();
+    }
+
+    public Conference findBySpeaker(String speaker) {
+        return conferenceService.findBySpeaker(speaker);
+    }
+
+    public Conference addMark(Integer conferenceId, double mark) {
+        return conferenceService.addMark(conferenceId, mark);
     }
 }

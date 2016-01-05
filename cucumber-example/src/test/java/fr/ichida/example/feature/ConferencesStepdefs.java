@@ -1,19 +1,18 @@
 package fr.ichida.example.feature;
 
-import fr.ichida.example.CucumberExampleApplication;
-import fr.ichida.example.entity.Conference;
-import fr.ichida.example.features.ConferenceRestService;
-import fr.ichida.example.service.ConferenceService;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import fr.ichida.example.CucumberExampleApplication;
+import fr.ichida.example.entity.Conference;
+import fr.ichida.example.service.ConferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 /**
  * Implementation of steps for BDD tests using Cucumber JVM.

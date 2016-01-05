@@ -10,6 +10,8 @@ import java.util.Objects;
  * @since 10/12/2015
  */
 public class Conference {
+    private Integer id;
+
     /**
      * The speaker of the conference
      */
@@ -60,5 +62,13 @@ public class Conference {
     @Override
     public int hashCode() {
         return Objects.hash(speaker, subject, mark);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

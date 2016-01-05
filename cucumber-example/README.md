@@ -3,7 +3,6 @@
 This project offers an example of cucumber-jvm use.
 
 To develop this application, I've written features specifications using Gerking language.
-
 This language is required by Cucumber in order to be read by the test runner.
 
 ## Project structure
