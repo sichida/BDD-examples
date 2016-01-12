@@ -12,7 +12,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 
 import java.util.List;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 /**
  * Implementation of steps for BDD tests using Cucumber JVM.
@@ -29,9 +29,8 @@ public class ConferencesStepdefs {
 
     private List<Conference> existingConferences;
 
-
-    @Given("^Charles is authenticated$")
-    public void charlesIsAuthenticated() throws Throwable {
+    @Given("^\"([^\"]*)\" is authenticated$")
+    public void isAuthenticated(String username) throws Throwable {
         // Nothing
     }
 
@@ -47,6 +46,6 @@ public class ConferencesStepdefs {
 
     @Then("^He should have the following list:$")
     public void heShouldHaveTheFollowingList(List<Conference> conferences) throws Throwable {
-        assertThat(conferences).isEqualTo(this.existingConferences);
+        assertThat(this.existingConferences).containsAll(conferences);
     }
 }

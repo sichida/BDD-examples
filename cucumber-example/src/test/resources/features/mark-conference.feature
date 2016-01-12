@@ -6,10 +6,15 @@ Fonctionnalité: noter une conférence
 
 
   Scénario:
-    Etant donné que Charles est authentifié
+    Etant donné que "Charles" est authentifié
     Et que les conférences suivantes ont été présentées:
-      | Speaker | Subject                                       |
-      | Shoun   | Réaliser une bonne recette grâce au concombre |
-    Lorsqu' il sélectionne la conférence de "Shoun"
-    Et qu'il attribue la note de 5
+      | Speaker | Subject                                                             |
+      | Shoun   | Réaliser une bonne recette grâce au concombre                       |
+      | Xavier  | Spock, un framework de test venu d’une autre planète                |
+      | Romain  | Une stack logicielle pour applications géolocalisées                |
+      | Patrick | Pour un front plus digeste, saupoudrez de feuilles de thym !!       |
+      | Walid   | La recette pour déployer des applications microservice avec Ansible |
+      | Yoann   | Java Agent en Action                                                |
+      | Fabrice | Maven, c'est bien, SBT c'est mieux!                                 |
+    Lorsqu' il attribue la note de 5 la conférence de "Shoun"
     Alors la conférence de "Shoun" devrait avoir la note de 5

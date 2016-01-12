@@ -24,7 +24,10 @@ public class ConferenceService {
     }
 
     public Conference register(Conference conference) {
-        return this.conferences.put(conference.getId(), conference);
+        conference.setId(this.conferences.size() + 1);
+        conference.setMark(0.0);
+        this.conferences.put(conference.getId(), conference);
+        return conference;
     }
 
     public List<Conference> findAll() {
@@ -39,12 +42,16 @@ public class ConferenceService {
         return null;
     }
 
-    public Conference addMark(Integer conferenceId, double mark) {
-        Conference c = conferences.get(conferenceId);
+    public Conference addMark(String speaker, double mark) {
+        Conference c = findBySpeaker(speaker);
         if (null != c) {
-            c.setMark(mark);
+            c.addMark(mark);
             return c;
         }
         return null;
+    }
+
+    public Map<Integer, Conference> getConferences() {
+        return conferences;
     }
 }

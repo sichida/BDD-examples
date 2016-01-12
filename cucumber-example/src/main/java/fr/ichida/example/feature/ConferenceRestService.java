@@ -3,8 +3,7 @@ package fr.ichida.example.feature;
 import fr.ichida.example.entity.Conference;
 import fr.ichida.example.service.ConferenceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,11 +30,18 @@ public class ConferenceRestService {
         return conferenceService.findAll();
     }
 
-    public Conference findBySpeaker(String speaker) {
+    @RequestMapping(path = {"", "/"}, method = RequestMethod.POST)
+    public Conference register(@RequestBody Conference conference) {
+        return conferenceService.register(conference);
+    }
+
+    @RequestMapping(path = "/{speaker}")
+    public Conference findConferenceBySpeaker(@PathVariable("speaker") String speaker) {
         return conferenceService.findBySpeaker(speaker);
     }
 
-    public Conference addMark(Integer conferenceId, double mark) {
-        return conferenceService.addMark(conferenceId, mark);
+    @RequestMapping(path = "/{speaker}/{mark}")
+    public Conference mark(@PathVariable("speaker") String speaker, @PathVariable("mark") int mark) {
+        return conferenceService.addMark(speaker, mark);
     }
 }

@@ -1,5 +1,7 @@
 package fr.ichida.example.entity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -10,6 +12,9 @@ import java.util.Objects;
  * @since 10/12/2015
  */
 public class Conference {
+    /**
+     * Identifier of the conference
+     */
     private Integer id;
 
     /**
@@ -24,6 +29,19 @@ public class Conference {
      * The average mark of the conference
      */
     private Double mark;
+
+    /**
+     * The all marks of the conference
+     */
+    private List<Double> markHistory = new ArrayList<>();
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getSpeaker() {
         return speaker;
@@ -49,6 +67,14 @@ public class Conference {
         this.mark = mark;
     }
 
+    public void addMark(double mark) {
+        if (null == markHistory) {
+            markHistory = new ArrayList<>();
+        }
+        markHistory.add(mark);
+        setMark(markHistory.stream().mapToDouble(a -> a).average().getAsDouble());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -64,11 +90,14 @@ public class Conference {
         return Objects.hash(speaker, subject, mark);
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
+    @Override
+    public String toString() {
+        final StringBuffer sb = new StringBuffer("Conference{");
+        sb.append("id=").append(id);
+        sb.append(", speaker='").append(speaker).append('\'');
+        sb.append(", subject='").append(subject).append('\'');
+        sb.append(", mark=").append(mark);
+        sb.append('}');
+        return sb.toString();
     }
 }
