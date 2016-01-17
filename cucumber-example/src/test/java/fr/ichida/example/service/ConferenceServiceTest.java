@@ -1,7 +1,13 @@
 package fr.ichida.example.service;
 
+import fr.ichida.example.CucumberExampleApplication;
 import fr.ichida.example.entity.Conference;
+import fr.ichida.example.repository.ConferenceRepository;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -11,12 +17,16 @@ import static org.assertj.core.api.Assertions.*;
  * @author shoun
  * @since 12/01/2016
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(CucumberExampleApplication.class)
 public class ConferenceServiceTest {
+    @Autowired
+    private ConferenceRepository conferencesRepository;
+    @Autowired
+    private ConferenceService conferenceService;
 
     @Test
     public void testRegister() throws Exception {
-        ConferenceService conferenceService = new ConferenceService();
-
         Conference c1 = new Conference();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");
@@ -24,7 +34,7 @@ public class ConferenceServiceTest {
         c1.setMark(0.0);
 
         conferenceService.register(c1);
-        assertThat(conferenceService.getConferences()).containsValues(c1);
+        assertThat(conferencesRepository.findAll()).containsOnly(c1);
 
         Conference c2 = new Conference();
         c2.setId(2);
@@ -33,13 +43,11 @@ public class ConferenceServiceTest {
         c2.setMark(0.0);
 
         conferenceService.register(c2);
-        assertThat(conferenceService.getConferences()).containsValues(c1, c2);
+        assertThat(conferencesRepository.findAll()).containsOnly(c1, c2);
     }
 
     @Test
     public void testFindAll() throws Exception {
-        ConferenceService conferenceService = new ConferenceService();
-
         Conference c1 = new Conference();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");
@@ -59,8 +67,6 @@ public class ConferenceServiceTest {
 
     @Test
     public void testFindBySpeaker() throws Exception {
-        ConferenceService conferenceService = new ConferenceService();
-
         Conference c1 = new Conference();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");
@@ -82,8 +88,6 @@ public class ConferenceServiceTest {
 
     @Test
     public void testAddMark() throws Exception {
-        ConferenceService conferenceService = new ConferenceService();
-
         Conference c1 = new Conference();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");

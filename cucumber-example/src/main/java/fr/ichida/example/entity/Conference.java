@@ -1,5 +1,6 @@
 package fr.ichida.example.entity;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +12,7 @@ import java.util.Objects;
  * @author shoun
  * @since 10/12/2015
  */
+@Entity
 public class Conference {
     /**
      * Identifier of the conference
@@ -35,6 +37,8 @@ public class Conference {
      */
     private List<Double> markHistory = new ArrayList<>();
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
         return id;
     }
@@ -65,6 +69,15 @@ public class Conference {
 
     public void setMark(Double mark) {
         this.mark = mark;
+    }
+
+    @ElementCollection
+    public List<Double> getMarkHistory() {
+        return markHistory;
+    }
+
+    public void setMarkHistory(List<Double> markHistory) {
+        this.markHistory = markHistory;
     }
 
     public void addMark(double mark) {

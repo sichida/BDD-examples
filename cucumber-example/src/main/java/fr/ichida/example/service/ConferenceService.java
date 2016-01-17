@@ -1,12 +1,12 @@
 package fr.ichida.example.service;
 
 import fr.ichida.example.entity.Conference;
+import fr.ichida.example.repository.ConferenceRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * This service allows to manipulate {@link Conference} entities.
@@ -16,42 +16,61 @@ import java.util.stream.Collectors;
  * @since 10/12/2015
  */
 @Service
+@Transactional
 public class ConferenceService {
-    private final Map<Integer, Conference> conferences;
+    /**
+     * Repository for handling conference data
+     */
+    private final ConferenceRepository conferencesRepository;
 
-    public ConferenceService() {
-        this.conferences = new HashMap<>();
+    @Autowired
+    public ConferenceService(ConferenceRepository conferencesRepository) {
+        this.conferencesRepository = conferencesRepository;
     }
 
+    /**
+     * This method registers a conference.
+     * It stores data in database
+     *
+     * @param conference The conference to register
+     * @return The registered conference if succeed
+     */
     public Conference register(Conference conference) {
-        conference.setId(this.conferences.size() + 1);
-        conference.setMark(0.0);
-        this.conferences.put(conference.getId(), conference);
-        return conference;
+        return conferencesRepository.save(conference);
     }
 
+    /**
+     * @return All existing conferences
+     */
+    @Transactional(readOnly = true)
     public List<Conference> findAll() {
-        return this.conferences.values().stream().collect(Collectors.toList());
+        return conferencesRepository.findAll();
     }
 
+    /**
+     * This method finds a conference by the name of it speaker
+     *
+     * @param speaker The spearker of the conference to find
+     * @return Found conference if any, null otherwise
+     */
+    @Transactional(readOnly = true)
     public Conference findBySpeaker(String speaker) {
-        for (Conference c : conferences.values()) {
-            if (c.getSpeaker().equals(speaker))
-                return c;
-        }
-        return null;
+        return conferencesRepository.findBySpeaker(speaker);
     }
 
+    /**
+     * This method adds a mark to the conference and updates the average grade.
+     *
+     * @param speaker The speaker of the conference to evaluate
+     * @param mark    The mark to give to the conference
+     * @return The updated conference
+     */
     public Conference addMark(String speaker, double mark) {
         Conference c = findBySpeaker(speaker);
         if (null != c) {
             c.addMark(mark);
-            return c;
+            return conferencesRepository.save(c);
         }
         return null;
-    }
-
-    public Map<Integer, Conference> getConferences() {
-        return conferences;
     }
 }
