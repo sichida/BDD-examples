@@ -1,3 +1,4 @@
+@txn
 Feature: List conferences
   As a listener
   I want to list all Young Blood conferences

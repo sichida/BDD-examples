@@ -36,6 +36,7 @@ public class ConferenceService {
      * @return The registered conference if succeed
      */
     public Conference register(Conference conference) {
+        conference.setMark(0.0);
         return conferencesRepository.save(conference);
     }
 
