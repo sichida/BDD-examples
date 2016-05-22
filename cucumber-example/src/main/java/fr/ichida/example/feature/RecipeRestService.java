@@ -18,30 +18,30 @@ import java.util.List;
 @RequestMapping("/conference")
 public class RecipeRestService {
 
-    private final RecipeService conferenceService;
+    private final RecipeService recipeService;
 
     @Autowired
-    public RecipeRestService(RecipeService conferenceService) {
-        this.conferenceService = conferenceService;
+    public RecipeRestService(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @RequestMapping(path = {"", "/"})
     public List<Recipe> findAll() {
-        return conferenceService.findAll();
+        return recipeService.findAll();
     }
 
     @RequestMapping(path = {"", "/"}, method = RequestMethod.POST)
     public Recipe register(@RequestBody Recipe conference) {
-        return conferenceService.register(conference);
+        return recipeService.register(conference);
     }
 
-//    @RequestMapping(path = "/{speaker}")
-//    public Recipe findConferenceBySpeaker(@PathVariable("speaker") String speaker) {
-//        return conferenceService.findBySpeaker(speaker);
-//    }
-//
-//    @RequestMapping(path = "/{speaker}/{mark}")
-//    public Recipe mark(@PathVariable("speaker") String speaker, @PathVariable("mark") int mark) {
-//        return conferenceService.addMark(speaker, mark);
-//    }
+    @RequestMapping(path = "/{speaker}")
+    public Recipe findByName(@PathVariable("recipe") String recipe) {
+        return recipeService.findByName(recipe);
+    }
+
+    @RequestMapping(path = "/{speaker}/{mark}")
+    public Recipe mark(@PathVariable("receipe") String recipe, @PathVariable("mark") int mark) {
+        return recipeService.addMark(recipe, mark);
+    }
 }

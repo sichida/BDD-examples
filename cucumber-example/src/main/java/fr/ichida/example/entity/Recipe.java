@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * This class represents a conference. It's described by a speaker and a subject.
- * Additionally, a mark can be set representing the average mark of the conference.
+ * This class represents a recipe. It's described by a name and a description.
+ * Additionally, a mark can be set representing the average mark of the recipe.
  *
  * @author shoun
  * @since 10/12/2015
@@ -20,15 +20,15 @@ public class Recipe {
     private Integer id;
 
     /**
-     * The speaker of the conference
+     * The name of the recipe
      */
-    private String speaker;
+    private String name;
     /**
-     * The subject of the conference
+     * The description of the recipe
      */
-    private String subject;
+    private String description;
     /**
-     * The average mark of the conference
+     * The average mark of the recipe
      */
     private Double mark;
 
@@ -47,20 +47,20 @@ public class Recipe {
         this.id = id;
     }
 
-    public String getSpeaker() {
-        return speaker;
+    public String getName() {
+        return name;
     }
 
-    public void setSpeaker(String speaker) {
-        this.speaker = speaker;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSubject(String subject) {
-        this.subject = subject;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Double getMark() {
@@ -92,24 +92,27 @@ public class Recipe {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Recipe that = (Recipe) o;
-        return Objects.equals(speaker, that.speaker) &&
-                Objects.equals(subject, that.subject) &&
-                Objects.equals(mark, that.mark);
+        Recipe recipe = (Recipe) o;
+        return Objects.equals(id, recipe.id) &&
+                Objects.equals(name, recipe.name) &&
+                Objects.equals(description, recipe.description) &&
+                Objects.equals(mark, recipe.mark) &&
+                Objects.equals(markHistory, recipe.markHistory);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(speaker, subject, mark);
+        return Objects.hash(id, name, description, mark, markHistory);
     }
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Recipe{");
+        final StringBuilder sb = new StringBuilder("Recipe{");
         sb.append("id=").append(id);
-        sb.append(", speaker='").append(speaker).append('\'');
-        sb.append(", subject='").append(subject).append('\'');
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", description='").append(description).append('\'');
         sb.append(", mark=").append(mark);
+        sb.append(", markHistory=").append(markHistory);
         sb.append('}');
         return sb.toString();
     }
