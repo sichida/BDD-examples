@@ -1,6 +1,6 @@
 package fr.ichida.example.repository;
 
-import fr.ichida.example.entity.Conference;
+import fr.ichida.example.entity.Recipe;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,10 +13,10 @@ import java.util.List;
  * @since 17/01/2016
  */
 @Repository("conferenceRepository")
-public interface ConferenceRepository extends CrudRepository<Conference, Integer> {
+public interface RecipeRepository extends CrudRepository<Recipe, Integer> {
 
     @Override
-    List<Conference> findAll();
+    List<Recipe> findAll();
 
-    Conference findBySpeaker(String speaker);
+    Recipe findBySpeaker(String speaker);
 }

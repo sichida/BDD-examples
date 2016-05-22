@@ -13,7 +13,7 @@ import java.util.Objects;
  * @since 10/12/2015
  */
 @Entity
-public class Conference {
+public class Recipe {
     /**
      * Identifier of the conference
      */
@@ -92,7 +92,7 @@ public class Conference {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Conference that = (Conference) o;
+        Recipe that = (Recipe) o;
         return Objects.equals(speaker, that.speaker) &&
                 Objects.equals(subject, that.subject) &&
                 Objects.equals(mark, that.mark);
@@ -105,7 +105,7 @@ public class Conference {
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Conference{");
+        final StringBuffer sb = new StringBuffer("Recipe{");
         sb.append("id=").append(id);
         sb.append(", speaker='").append(speaker).append('\'');
         sb.append(", subject='").append(subject).append('\'');

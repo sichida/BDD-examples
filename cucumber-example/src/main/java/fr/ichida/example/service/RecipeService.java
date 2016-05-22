@@ -1,7 +1,7 @@
 package fr.ichida.example.service;
 
-import fr.ichida.example.entity.Conference;
-import fr.ichida.example.repository.ConferenceRepository;
+import fr.ichida.example.entity.Recipe;
+import fr.ichida.example.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * This service allows to manipulate {@link Conference} entities.
+ * This service allows to manipulate {@link Recipe} entities.
  * Convenience methods are proposed.
  *
  * @author shoun
@@ -17,14 +17,14 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ConferenceService {
+public class RecipeService {
     /**
      * Repository for handling conference data
      */
-    private final ConferenceRepository conferencesRepository;
+    private final RecipeRepository conferencesRepository;
 
     @Autowired
-    public ConferenceService(ConferenceRepository conferencesRepository) {
+    public RecipeService(RecipeRepository conferencesRepository) {
         this.conferencesRepository = conferencesRepository;
     }
 
@@ -35,7 +35,7 @@ public class ConferenceService {
      * @param conference The conference to register
      * @return The registered conference if succeed
      */
-    public Conference register(Conference conference) {
+    public Recipe register(Recipe conference) {
         conference.setMark(0.0);
         return conferencesRepository.save(conference);
     }
@@ -44,7 +44,7 @@ public class ConferenceService {
      * @return All existing conferences
      */
     @Transactional(readOnly = true)
-    public List<Conference> findAll() {
+    public List<Recipe> findAll() {
         return conferencesRepository.findAll();
     }
 
@@ -55,7 +55,7 @@ public class ConferenceService {
      * @return Found conference if any, null otherwise
      */
     @Transactional(readOnly = true)
-    public Conference findBySpeaker(String speaker) {
+    public Recipe findBySpeaker(String speaker) {
         return conferencesRepository.findBySpeaker(speaker);
     }
 
@@ -66,8 +66,8 @@ public class ConferenceService {
      * @param mark    The mark to give to the conference
      * @return The updated conference
      */
-    public Conference addMark(String speaker, double mark) {
-        Conference c = findBySpeaker(speaker);
+    public Recipe addMark(String speaker, double mark) {
+        Recipe c = findBySpeaker(speaker);
         if (null != c) {
             c.addMark(mark);
             return conferencesRepository.save(c);

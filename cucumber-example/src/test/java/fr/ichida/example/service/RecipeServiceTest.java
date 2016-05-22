@@ -1,8 +1,8 @@
 package fr.ichida.example.service;
 
 import fr.ichida.example.CucumberExampleApplication;
-import fr.ichida.example.entity.Conference;
-import fr.ichida.example.repository.ConferenceRepository;
+import fr.ichida.example.entity.Recipe;
+import fr.ichida.example.repository.RecipeRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Unit tests for {@link ConferenceService}.
+ * Unit tests for {@link RecipeService}.
  *
  * @author shoun
  * @since 12/01/2016
@@ -21,15 +21,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(CucumberExampleApplication.class)
 @Transactional
-public class ConferenceServiceTest {
+public class RecipeServiceTest {
     @Autowired
-    private ConferenceRepository conferencesRepository;
+    private RecipeRepository conferencesRepository;
     @Autowired
-    private ConferenceService conferenceService;
+    private RecipeService conferenceService;
 
     @Test
     public void testRegister() throws Exception {
-        Conference c1 = new Conference();
+        Recipe c1 = new Recipe();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");
         c1.setSubject("Subject 1");
@@ -38,7 +38,7 @@ public class ConferenceServiceTest {
         conferenceService.register(c1);
         assertThat(conferencesRepository.findAll()).containsOnly(c1);
 
-        Conference c2 = new Conference();
+        Recipe c2 = new Recipe();
         c2.setId(2);
         c2.setSpeaker("Speaker 2");
         c2.setSubject("Subject 2");
@@ -50,13 +50,13 @@ public class ConferenceServiceTest {
 
     @Test
     public void testFindAll() throws Exception {
-        Conference c1 = new Conference();
+        Recipe c1 = new Recipe();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");
         c1.setSubject("Subject 1");
         c1.setMark(0.0);
 
-        Conference c2 = new Conference();
+        Recipe c2 = new Recipe();
         c2.setId(2);
         c2.setSpeaker("Speaker 2");
         c2.setSubject("Subject 2");
@@ -69,13 +69,13 @@ public class ConferenceServiceTest {
 
     @Test
     public void testFindBySpeaker() throws Exception {
-        Conference c1 = new Conference();
+        Recipe c1 = new Recipe();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");
         c1.setSubject("Subject 1");
         c1.setMark(0.0);
 
-        Conference c2 = new Conference();
+        Recipe c2 = new Recipe();
         c2.setId(2);
         c2.setSpeaker("Speaker 2");
         c2.setSubject("Subject 2");
@@ -90,13 +90,13 @@ public class ConferenceServiceTest {
 
     @Test
     public void testAddMark() throws Exception {
-        Conference c1 = new Conference();
+        Recipe c1 = new Recipe();
         c1.setId(1);
         c1.setSpeaker("Speaker 1");
         c1.setSubject("Subject 1");
         c1.setMark(0.0);
 
-        Conference c2 = new Conference();
+        Recipe c2 = new Recipe();
         c2.setId(2);
         c2.setSpeaker("Speaker 2");
         c2.setSubject("Subject 2");
