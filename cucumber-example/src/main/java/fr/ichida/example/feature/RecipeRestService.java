@@ -25,11 +25,6 @@ public class RecipeRestService {
         this.recipeService = recipeService;
     }
 
-    @RequestMapping(path = {"", "/"})
-    public List<Recipe> findAll() {
-        return recipeService.findAll();
-    }
-
     @RequestMapping(path = {"", "/"}, method = RequestMethod.POST)
     public Recipe register(@RequestBody Recipe conference) {
         return recipeService.register(conference);

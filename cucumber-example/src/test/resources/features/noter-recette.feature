@@ -6,7 +6,7 @@ Fonctionnalité: noter une recette
   Afin de les évaluer
 
 
-  Scénario: Je peux noter pour la recette "Salade de concombre"
+  Scénario: Je peux noter la recette "Salade de concombre"
     Etant donné que "Shoun" est authentifié
     Et que les recettes suivantes existent:
       | Name                | Description                            |

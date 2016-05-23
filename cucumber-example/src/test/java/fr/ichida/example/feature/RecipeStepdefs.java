@@ -1,5 +1,6 @@
 package fr.ichida.example.feature;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -34,21 +35,6 @@ public class RecipeStepdefs {
     @And("^The following recipes exist:$")
     public void theFollowingRecipesExist(List<Recipe> recipes) throws Throwable {
         recipes.stream().forEach(recipeRestService::register);
-    }
-
-    @When("^He requests a list of all recipes$")
-    public void heRequestsAListOfAllRecipes() throws Throwable {
-        recipes = recipeRestService.findAll();
-    }
-
-    @Then("^He should have the following list:$")
-    public void heShouldHaveTheFollowingList(List<Recipe> recipes) throws Throwable {
-        assertThat(this.recipes).extracting("name", "description", "mark").containsAll(
-                recipes
-                        .stream()
-                        .map(r -> tuple(r.getName(), r.getDescription(), r.getMark()))
-                        .collect(toList())
-        );
     }
 
     @Et("^que les recettes suivantes existent:$")

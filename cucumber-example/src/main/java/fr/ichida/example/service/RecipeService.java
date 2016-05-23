@@ -41,14 +41,6 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
-    /**
-     * @return All existing recipes
-     */
-    @Transactional(readOnly = true)
-    public List<Recipe> findAll() {
-        return recipeRepository.findAll();
-    }
-
 
     /**
      * This method adds a mark to the recipe and updates the average grade.
