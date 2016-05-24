@@ -14,7 +14,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"pretty", "html:target/cucumber"},
         features = {"classpath:features/"},
-        glue = {"cucumber.api.spring", "fr.ichida.example.feature"}
+        glue = {"cucumber.api.spring", "fr.ichida.example.feature"},
+        format = {"html:target/cucumber", "json:target/cucumber.json"}
 )
 public class RunCukesTest {
 }
