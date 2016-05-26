@@ -69,4 +69,12 @@ public class RecipeService {
     public Recipe findByName(String recipe) {
         return recipeRepository.findByName(recipe);
     }
+
+    /**
+     * @return All existing recipes
+     */
+    @Transactional(readOnly = true)
+    public List<Recipe> findAll() {
+        return recipeRepository.findAll();
+    }
 }

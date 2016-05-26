@@ -39,4 +39,9 @@ public class RecipeRestService {
     public Recipe mark(@PathVariable("receipe") String recipe, @PathVariable("mark") int mark) {
         return recipeService.addMark(recipe, mark);
     }
+
+    @RequestMapping(path = {"", "/"})
+    public List<Recipe> findAll() {
+        return recipeService.findAll();
+    }
 }

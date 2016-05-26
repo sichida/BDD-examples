@@ -52,4 +52,20 @@ public class RecipeStepdefs {
         Recipe r = recipeRestService.findByName(recipe);
         assertThat(r.getMark()).isEqualTo(mark);
     }
+
+    @When("^He requests a list of all recipes$")
+    public void heRequestsAListOfAllRecipes() throws Throwable {
+        recipes = recipeRestService.findAll();
+    }
+
+    @Then("^He should have the following list:$")
+    public void heShouldHaveTheFollowingList(List<Recipe> recipes) throws Throwable {
+        assertThat(this.recipes).extracting("name", "description", "mark").containsAll(
+                recipes
+                        .stream()
+                        .map(r -> tuple(r.getName(), r.getDescription(), r.getMark()))
+                        .collect(toList())
+        );
+
+    }
 }
