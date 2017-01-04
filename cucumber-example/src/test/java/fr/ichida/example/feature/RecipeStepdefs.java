@@ -34,7 +34,7 @@ public class RecipeStepdefs {
 
     @And("^The following recipes exist:$")
     public void theFollowingRecipesExist(List<Recipe> recipes) throws Throwable {
-        recipes.stream().forEach(recipeRestService::register);
+        recipes.forEach(recipeRestService::register);
     }
 
     @Et("^que les recettes suivantes existent:$")
@@ -53,11 +53,6 @@ public class RecipeStepdefs {
         assertThat(r.getMark()).isEqualTo(mark);
     }
 
-    @When("^He requests a list of all recipes$")
-    public void heRequestsAListOfAllRecipes() throws Throwable {
-        recipes = recipeRestService.findAll();
-    }
-
     @Then("^He should have the following list:$")
     public void heShouldHaveTheFollowingList(List<Recipe> recipes) throws Throwable {
         assertThat(this.recipes).extracting("name", "description", "mark").containsAll(
@@ -66,6 +61,10 @@ public class RecipeStepdefs {
                         .map(r -> tuple(r.getName(), r.getDescription(), r.getMark()))
                         .collect(toList())
         );
+    }
 
+    @When("^He requests a list of all recipes$")
+    public void heRequestsAListOfAllRecipes() throws Throwable {
+        recipes = recipeRestService.findAll();
     }
 }
