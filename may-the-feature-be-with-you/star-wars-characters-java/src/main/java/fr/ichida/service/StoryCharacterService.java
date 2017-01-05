@@ -14,7 +14,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
  * Created by shoun on 04/01/2017.
  */
 @RestController
-@RequestMapping(path = "/api/v1/character")
+@RequestMapping("/api/v1/character")
 public class StoryCharacterService {
     private final StoryCharacterRepository storyCharacterRepository;
 
@@ -23,7 +23,7 @@ public class StoryCharacterService {
         this.storyCharacterRepository = storyCharacterRepository;
     }
 
-    @RequestMapping(path = "/", method = POST)
+    @RequestMapping(value = {"", "/"}, method = POST)
     @Transactional
     public StoryCharacter save(@RequestBody StoryCharacter newCharacter) {
         return storyCharacterRepository.save(newCharacter);
