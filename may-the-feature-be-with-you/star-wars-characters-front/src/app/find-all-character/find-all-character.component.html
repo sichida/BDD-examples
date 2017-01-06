@@ -1,0 +1,14 @@
+<section class="col-xs-12">
+  <section class="row">
+    <div class="col-sm-6 col-md-4" *ngFor="let character of characters">
+      <div class="thumbnail">
+        <img src="{{character.imageUrl}}" alt="{{character.actor}}">
+        <div class="caption">
+          <h3>{{character.firstname}} {{character.lastname}}</h3>
+          <p>{{character.description}}</p>
+          <p><a href="#" class="btn btn-primary" role="button">Learn more</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>

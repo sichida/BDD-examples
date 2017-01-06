@@ -1,38 +1,42 @@
-<h2>Create character</h2>
-<form (submit)="register()" class="form-horizontal">
-  <div class="form-group">
-    <label for="firstname" class="col-sm-2 control-label">Firstname</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
-             [(ngModel)]="character.firstname">
+<section class="col-xs-12">
+  <h2>Create character</h2>
+  <form (submit)="register()" class="form-horizontal">
+    <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">Firstname</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Firstname"
+               [(ngModel)]="character.firstname">
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="lastname" class="col-sm-2 control-label">Lastname</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
-             [(ngModel)]="character.lastname">
+    <div class="form-group">
+      <label for="lastname" class="col-sm-2 control-label">Lastname</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Lastname"
+               [(ngModel)]="character.lastname">
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="actor" class="col-sm-2 control-label">Actor</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="actor" name="actor" placeholder="Actor" [(ngModel)]="character.actor">
+    <div class="form-group">
+      <label for="actor" class="col-sm-2 control-label">Actor</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="actor" name="actor" placeholder="Actor"
+               [(ngModel)]="character.actor">
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="description" class="col-sm-2 control-label">Description</label>
-    <div class="col-sm-10">
-      <textarea class="form-control" id="description" name="description" [(ngModel)]="character.description"></textarea>
+    <div class="form-group">
+      <label for="description" class="col-sm-2 control-label">Description</label>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="description" name="description"
+                  [(ngModel)]="character.description"></textarea>
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="picture" class="col-sm-2 control-label">Picture</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" id="picture" name="picture" placeholder="Picture"
-             [(ngModel)]="character.imageUrl">
+    <div class="form-group">
+      <label for="picture" class="col-sm-2 control-label">Picture</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="picture" name="picture" placeholder="Picture"
+               [(ngModel)]="character.imageUrl">
+      </div>
     </div>
-  </div>
-  <button class="btn btn-success" type="submit">Submit</button>
-</form>
-<pre *ngIf="error">{{error | json}}</pre>
+    <button class="btn btn-success" type="submit">Submit</button>
+  </form>
+  <pre *ngIf="error">{{error | json}}</pre>
+</section>
