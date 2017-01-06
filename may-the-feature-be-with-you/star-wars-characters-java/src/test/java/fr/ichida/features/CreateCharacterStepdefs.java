@@ -1,10 +1,12 @@
 package fr.ichida.features;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import cucumber.api.java.fr.Etantdonné;
 import fr.ichida.StarWarsCharactersApplication;
 import fr.ichida.domain.StoryCharacter;
 import fr.ichida.repository.StoryCharacterRepository;
@@ -68,6 +70,7 @@ public class CreateCharacterStepdefs {
         assertThat(character.getImageUrl()).isNotEmpty();
     }
 
+    @Etantdonné("^que les personnage suivant existent:$")
     @Given("^the following characters exist:$")
     public void theFollowingCharactersExist(List<StoryCharacter> character) throws Throwable {
         character.forEach(storyCharacterRepository::save);
