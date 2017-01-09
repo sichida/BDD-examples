@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface StoryCharacterRepository extends JpaRepository<StoryCharacter, Integer> {
-    StoryCharacter findByFirstnameAndLastname(String firstname, String lastname);
+    StoryCharacter findByName(String identifier);
 }

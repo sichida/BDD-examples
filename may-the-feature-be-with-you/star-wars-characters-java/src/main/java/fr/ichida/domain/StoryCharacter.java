@@ -6,19 +6,20 @@ import javax.persistence.*;
  * Created by shoun on 04/01/2017.
  */
 @Entity
-@Table(uniqueConstraints={
-        @UniqueConstraint(columnNames = {"firstname", "lastname"})
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name"})
 })
 public class StoryCharacter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String firstname;
-    private String lastname;
+    private String name;
     private String actor;
     private String description;
     private String imageUrl;
+    @OneToOne
+    private CharacterExtraData extraData;
 
     public Long getId() {
         return id;
@@ -26,22 +27,6 @@ public class StoryCharacter {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getActor() {
@@ -66,5 +51,21 @@ public class StoryCharacter {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public CharacterExtraData getExtraData() {
+        return extraData;
+    }
+
+    public void setExtraData(CharacterExtraData extraData) {
+        this.extraData = extraData;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 }
