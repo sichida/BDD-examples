@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {StoryCharacter} from "../entity/story-character";
-import {Http, Headers, RequestOptions} from "@angular/http";
+import {Http, Headers, RequestOptions, URLSearchParams} from "@angular/http";
 import {Observable} from "rxjs";
 import "rxjs/Rx";
 
@@ -23,6 +23,23 @@ export class StoryCharacterService {
     let options = new RequestOptions({headers: this._headers});
 
     return this._http.get('/api/v1/character', options)
+      .map(res => res.json());
+  }
+
+  search(query: string) {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('query', query);
+    let options = new RequestOptions({headers: this._headers, search: params});
+
+    return this._http.get('/api/v1/character/search', options)
+      .map(res => res.json());
+  }
+
+  import(url: string) {
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('url', url);
+    let options = new RequestOptions({headers: this._headers, search: params});
+    return this._http.post('/api/v1/character/import', '', options)
       .map(res => res.json());
   }
 }

@@ -66,7 +66,8 @@ public class StoryCharacterService {
         return response.getBody();
     }
 
-    public StoryCharacter importData(String swapiCharacterUrl) {
+    @RequestMapping(value = "/import", method = POST)
+    public StoryCharacter importData(@RequestParam("url") String swapiCharacterUrl) {
         HttpEntity<String> entity = getAppHeader();
         ResponseEntity<CharacterExtraData> response = restTemplate.exchange(swapiCharacterUrl, HttpMethod.GET, entity, CharacterExtraData.class);
         CharacterExtraData extraData = response.getBody();
@@ -75,8 +76,8 @@ public class StoryCharacterService {
         if (null == character) {
             character = new StoryCharacter();
             character.setName(extraData.getName());
-            character.setExtraData(this.characterExtraDataRepository.save(extraData));
         }
+        character.setExtraData(this.characterExtraDataRepository.save(extraData));
         return this.storyCharacterRepository.save(character);
     }
 

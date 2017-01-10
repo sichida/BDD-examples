@@ -10,12 +10,14 @@ import { CreateCharacterComponent } from './create-character/create-character.co
 import {StoryCharacterService} from "./service/story-character.service";
 import {appRoutes} from "./app.routes";
 import { FindAllCharacterComponent } from './find-all-character/find-all-character.component';
+import { ImportCharacterComponent } from './import-character/import-character.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateCharacterComponent,
-    FindAllCharacterComponent
+    FindAllCharacterComponent,
+    ImportCharacterComponent
   ],
   imports: [
     BrowserModule,

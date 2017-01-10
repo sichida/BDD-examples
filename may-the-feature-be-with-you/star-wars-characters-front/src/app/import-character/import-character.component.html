@@ -1,0 +1,23 @@
+<section class="col-xs-12">
+  <form (submit)="search(searchQuery.value)" class="form-horizontal">
+    <div class="form-group">
+      <label for="query" class="col-sm-2 control-label">Search</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="query" name="query" placeholder="Search" #searchQuery>
+      </div>
+    </div>
+    <button class="btn btn-success" type="submit">Search</button>
+  </form>
+  <section *ngIf="results">
+    <section class="row">
+      <div class="col-sm-6 col-md-4" *ngFor="let character of results">
+        <div class="thumbnail">
+          <div class="caption">
+            <h3>{{character.name}}</h3>
+            <p><a (click)="import(character.url)" class="btn btn-primary" role="button">Import</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</section>

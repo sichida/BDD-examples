@@ -6,6 +6,17 @@
         <div class="caption">
           <h3>{{character.name}}</h3>
           <p>{{character.description}}</p>
+          <div *ngIf="character.extraData">
+            <ul>
+              <li>Gender: {{character.extraData.gender}}</li>
+              <li>Birth year: {{character.extraData.birth_year}}</li>
+              <li>Eye color: {{character.extraData.eye_color}}</li>
+              <li>Hair color: {{character.extraData.hair_color}}</li>
+              <li>Skin color: {{character.extraData.skin_color}}</li>
+              <li>Height: {{character.extraData.height}} cm</li>
+              <li>Mass: {{character.extraData.mass}} kg</li>
+            </ul>
+          </div>
           <p><a href="#" class="btn btn-primary" role="button">Learn more</a></p>
         </div>
       </div>

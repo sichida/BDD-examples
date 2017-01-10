@@ -22,7 +22,7 @@ export class CreateCharacterComponent implements OnInit {
 
   register(): void {
     this.storyCharacterService.save(this.character)
-      .subscribe(character => this.router.navigate(['/']), error => this.error = error.json());
+      .subscribe(() => this.router.navigate(['/']), error => this.error = error.json());
   }
 
 }
