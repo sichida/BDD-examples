@@ -5,6 +5,7 @@
         <img src="{{character.imageUrl}}" alt="{{character.actor}}">
         <div class="caption">
           <h3>{{character.name}}</h3>
+          <h6 *ngIf="character.actor">{{character.actor}}</h6>
           <p>{{character.description}}</p>
           <div *ngIf="character.extraData">
             <ul>
