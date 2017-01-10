@@ -3,9 +3,11 @@ package fr.ichida.features;
 import cucumber.api.java.fr.Alors;
 import cucumber.api.java.fr.Et;
 import cucumber.api.java.fr.Lorsque;
+import fr.ichida.StarWarsCharactersApplication;
 import fr.ichida.domain.StoryCharacter;
 import fr.ichida.service.StoryCharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ import static org.assertj.core.api.Assertions.tuple;
 /**
  * Created by shoun on 06/01/2017.
  */
+@ContextConfiguration(classes = StarWarsCharactersApplication.class)
 public class ListCharactersStepdefs {
     private List<StoryCharacter> storyCharacters;
     @Autowired
