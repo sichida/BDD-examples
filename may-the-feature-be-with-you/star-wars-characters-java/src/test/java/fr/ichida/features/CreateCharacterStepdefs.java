@@ -1,5 +1,6 @@
 package fr.ichida.features;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
@@ -34,16 +35,16 @@ public class CreateCharacterStepdefs {
     }
 
     @When("^George creates \"([^\"]*)\" portrayed by \"([^\"]*)\"$")
-    public void georgeCreatesPortrayedBy(String identifier, String actor) throws Throwable {
+    public void georgeCreatesPortrayedBy(String name, String actor) throws Throwable {
         StoryCharacter newCharacter = new StoryCharacter();
-        newCharacter.setName(identifier);
+        newCharacter.setName(name);
         newCharacter.setActor(actor);
         storyCharacterService.save(newCharacter);
     }
 
     @Then("^the character \"([^\"]*)\" should exist$")
-    public void theCharacterShouldExist(String identifier) throws Throwable {
-        StoryCharacter character = storyCharacterRepository.findByName(identifier);
+    public void theCharacterShouldExist(String name) throws Throwable {
+        StoryCharacter character = storyCharacterRepository.findByName(name);
         assertThat(character).isNotNull();
     }
 
@@ -57,14 +58,14 @@ public class CreateCharacterStepdefs {
     }
 
     @And("^the character \"([^\"]*)\" should be interpreted by \"([^\"]*)\"$")
-    public void theCharacterShouldBeInterpretedBy(String identifier, String actor) throws Throwable {
-        StoryCharacter character = storyCharacterRepository.findByName(identifier);
+    public void theCharacterShouldBeInterpretedBy(String name, String actor) throws Throwable {
+        StoryCharacter character = storyCharacterRepository.findByName(name);
         assertThat(character.getActor()).isEqualTo(actor);
     }
 
     @And("^the character \"([^\"]*)\" should have a picture$")
-    public void theCharacterShouldHaveAPicture(String identifier) throws Throwable {
-        StoryCharacter character = storyCharacterRepository.findByName(identifier);
+    public void theCharacterShouldHaveAPicture(String name) throws Throwable {
+        StoryCharacter character = storyCharacterRepository.findByName(name);
         assertThat(character.getImageUrl()).isNotEmpty();
     }
 
@@ -81,5 +82,20 @@ public class CreateCharacterStepdefs {
     @Etantdonné("^que les personnage suivant existent:$")
     public void queLesPersonnageSuivantExistent(List<StoryCharacter> characters) throws Throwable {
         this.theFollowingCharactersExist(characters);
+    }
+
+    @And("^the character \"([^\"]*)\" should have \"([^\"]*)\" as description$")
+    public void theCharacterShouldHaveAsDescription(String name, String description) throws Throwable {
+        StoryCharacter character = storyCharacterRepository.findByName(name);
+        assertThat(character.getDescription()).isEqualTo(description);
+    }
+
+    @When("^George edits the character \"([^\"]*)\" with the following data:$")
+    public void georgeEditsTheCharacterWithTheFollowingData(String name, List<StoryCharacter> characters) throws Throwable {
+        try {
+            storyCharacterService.edit(name, characters.get(0));
+        } catch (Exception e) {
+            this.exceptionHasBeenRaised = true;
+        }
     }
 }

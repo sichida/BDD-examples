@@ -42,4 +42,18 @@ export class StoryCharacterService {
     return this._http.post('/api/v1/character/import', '', options)
       .map(res => res.json());
   }
+
+  get(name: string) {
+    let options = new RequestOptions({headers: this._headers});
+
+    return this._http.get(`/api/v1/character/${name}`, options)
+      .map(res => res.json());
+  }
+
+  edit(character: StoryCharacter) {
+    let options = new RequestOptions({headers: this._headers});
+
+    return this._http.put(`/api/v1/character/${character.name}`, JSON.stringify(character), options)
+      .map(res => res.json());
+  }
 }

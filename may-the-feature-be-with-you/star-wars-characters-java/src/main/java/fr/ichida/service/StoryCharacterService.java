@@ -8,10 +8,7 @@ import fr.ichida.repository.StoryCharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestOperations;
 
 import java.util.Arrays;
@@ -21,6 +18,7 @@ import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.PUT;
 
 /**
  * Created by shoun on 04/01/2017.
@@ -81,10 +79,29 @@ public class StoryCharacterService {
         return this.storyCharacterRepository.save(character);
     }
 
+    @Transactional
+    @RequestMapping(value = "/{name}", method = PUT)
+    public StoryCharacter edit(@PathVariable("name") String name, @RequestBody StoryCharacter storyCharacter) {
+        StoryCharacter toEdit = this.storyCharacterRepository.findByName(name);
+        if (null == toEdit) {
+            throw new RuntimeException("Cannot edit a character who doesn't exist");
+        }
+        toEdit.setActor(storyCharacter.getActor());
+        toEdit.setDescription(storyCharacter.getDescription());
+        toEdit.setImageUrl(storyCharacter.getImageUrl());
+        return storyCharacterRepository.save(toEdit);
+    }
+
     private HttpEntity<String> getAppHeader() {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.set("User-Agent", BDD_USER_AGENT);
         return new HttpEntity<String>("parameters", headers);
+    }
+
+    @Transactional(readOnly = true)
+    @RequestMapping(value = "/{name}", method = GET)
+    public StoryCharacter findByName(@PathVariable("name") String name) {
+        return storyCharacterRepository.findByName(name);
     }
 }

@@ -6,5 +6,6 @@ import {ImportCharacterComponent} from "./import-character/import-character.comp
 export const appRoutes: Routes = [
   {path: '', component: FindAllCharacterComponent},
   {path: 'new', component: CreateCharacterComponent},
+  {path: 'edit/:name', component: CreateCharacterComponent},
   {path: 'import', component: ImportCharacterComponent}
 ];

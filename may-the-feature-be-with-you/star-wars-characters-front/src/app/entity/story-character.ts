@@ -3,4 +3,5 @@ export class StoryCharacter {
   public actor: String;
   public description: String;
   public imageUrl: String;
+  public id:number;
 }
