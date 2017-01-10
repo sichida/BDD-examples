@@ -4,7 +4,6 @@ Feature: Create a character
   I need to create characters
   So I can write an awesome story
 
-
   Scenario: I should be able to create a character
     When George creates "Luke Skywalker" portrayed by "Mark Hamill"
     Then the character "Luke Skywalker" should exist

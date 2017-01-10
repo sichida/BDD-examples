@@ -33,7 +33,7 @@ public class ListCharactersStepdefs {
     @Et("^je dois avoir le personnage suivant parmis les résultats :$")
     public void jeDoisAvoirLePersonnageSuivantParmisLesRésultats(List<StoryCharacter> character) throws Throwable {
         StoryCharacter sc = character.get(0);
-        assertThat(this.storyCharacters).extracting("identifier", "actor", "description", "imageUrl")
+        assertThat(this.storyCharacters).extracting("name", "actor", "description", "imageUrl")
                 .contains(tuple(sc.getName(), sc.getActor(), sc.getDescription(), sc.getImageUrl()));
     }
 }

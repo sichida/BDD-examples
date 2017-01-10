@@ -5,7 +5,6 @@ Fonctionnalité: Lister les personnages
   Je souhaite lister tous les personnages
   Afin d'écrire mes scénario
 
-
   Scénario: Lister un personnage
     Etant donné que les personnage suivant existent:
       | name           | actor       | description | imageUrl                                                       |
@@ -34,7 +33,7 @@ Fonctionnalité: Lister les personnages
       | name        | actor         | description                    | imageUrl                                                                                      |
       | Leia Organa | Carrie Fisher | Princess, among Rebel Alliance | https://upload.wikimedia.org/wikipedia/en/1/1b/Princess_Leia%27s_characteristic_hairstyle.jpg |
 
-  Scénario: Lister aucun personnages
+  Scénario: Lister aucun personnage
     Etant donné que les personnage suivant existent:
       | name | actor | description | imageUrl |
     Lorsque je demande tous les personnages existants
