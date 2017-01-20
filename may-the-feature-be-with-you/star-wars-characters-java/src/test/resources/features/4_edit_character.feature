@@ -14,6 +14,7 @@ Feature: Edit a character
       | Luke Skywalker | Mark Hamill | The hero of episodes 4 to 6 | https://media.timeout.com/images/101902627/1372/1029/image.jpg |
     Then the character "Luke Skywalker" should exist
     And the character "Luke Skywalker" should be interpreted by "Mark Hamill"
+    And the character "Luke Skywalker" should have "The hero of episodes 4 to 6" as description
     And the character "Luke Skywalker" should have a picture
     And the character "Luke Skywalker" should have "The hero of episodes 4 to 6" as description
 

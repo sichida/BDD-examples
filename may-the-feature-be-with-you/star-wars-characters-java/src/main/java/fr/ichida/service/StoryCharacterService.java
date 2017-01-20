@@ -96,7 +96,7 @@ public class StoryCharacterService {
         HttpHeaders headers = new HttpHeaders();
         headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
         headers.set("User-Agent", BDD_USER_AGENT);
-        return new HttpEntity<String>("parameters", headers);
+        return new HttpEntity<String>(headers);
     }
 
     @Transactional(readOnly = true)
