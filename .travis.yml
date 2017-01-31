@@ -16,8 +16,9 @@ addons:
     token:
       secure: DPyVfBCULR05+nGEUsqYgSa6+X7gy8RhH/I/7mOb743h7cABz27oZIOuK2BPlsZNH7uPM9wMvb39L4T6d+lX0o54KXwdYMxCYq3+FWQvtBSBCtari9tDYrhReHvnXYws3VwRMPLnrrLo/9T96FS5EhYRWE6v9M+pGKn2IUPIkmh2quRbzUyYTzKR1W5BCHKQLSME+OYrPJQ5oOvX+SWp9dQlQTDWIrFVvSKybqiElsfi8O9rPmbbmm7nOqUFDGobs5Yzcp1Cf7lQ75syJoR2pKJS+g+t5AQvC0RUaGf8q0IZtG6eotG9qeKWH/HMH8I1I5vH052MGlstP4Kc9k42TJGB72Amqkx0u3N++NhBGSFQlHtA/CnLASoe6iz5uHP7X03DmModfAD5vU05+KzT4NYR6D2LGrwPgO3pO9rwR2B4zxjN2ZsYt4cECTtMwMRinSPLovRwsSMKIu7QmZrP6FTrhAjLXg/NQH6qdxCoXwvQSL9sYtdfzqlgnb+BoDf0J0OmEKtbKXHTvkoLPmf0ls4ekrNE+2O3gBU489DDOGMfVXUjI4AMYO+B+rPYHeldW19jhQ4ZG3Fix0w4znEm2DHNgLbyTOShIk+hNbk/k5EunXFYhLX0LYiXoiRHwjUZNPhowbqHf/xsS+JyHy7bs2fSZumIVKZ5AJghLBbLfNg=
     branches:
+        - master
         - jug_toulouse
         - agile_france
-	- young_blood
+        - young_blood
 script:
   - cd $TEST_DIR && mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
